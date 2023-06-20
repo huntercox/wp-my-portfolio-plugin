@@ -23,6 +23,7 @@ class ComposerStaticInite434ca7a69e77b4503043afd0be16b72
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'MyPortfolio\\AdminPages\\MenuPage' => __DIR__ . '/../..' . '/src/MyPortfolio/AdminPages/MenuPage.php',
+        'MyPortfolio\\AdminPages\\PortfolioPostType' => __DIR__ . '/../..' . '/src/MyPortfolio/AdminPages/PortfolioPostType.php',
         'MyPortfolio\\AdminPages\\SettingsPage1' => __DIR__ . '/../..' . '/src/MyPortfolio/AdminPages/SettingsPage1.php',
         'MyPortfolio\\AdminPages\\SettingsPage2' => __DIR__ . '/../..' . '/src/MyPortfolio/AdminPages/SettingsPage2.php',
         'MyPortfolio\\AdminPages\\SettingsPage3' => __DIR__ . '/../..' . '/src/MyPortfolio/AdminPages/SettingsPage3.php',
