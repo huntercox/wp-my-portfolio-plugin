@@ -26,6 +26,7 @@ class ComposerStaticInite434ca7a69e77b4503043afd0be16b72
         'MyPortfolio\\AdminPages\\MenuPage' => __DIR__ . '/../..' . '/src/MyPortfolio/AdminPages/MenuPage.php',
         'MyPortfolio\\MyPortfolio' => __DIR__ . '/../..' . '/src/MyPortfolio/MyPortfolio.php',
         'MyPortfolio\\Projects\\ProjectsDisplay' => __DIR__ . '/../..' . '/src/MyPortfolio/Projects/ProjectsDisplay.php',
+        'MyPortfolio\\Projects\\ProjectsMetaFields' => __DIR__ . '/../..' . '/src/MyPortfolio/Projects/ProjectsMetaFields.php',
         'MyPortfolio\\Projects\\ProjectsPostType' => __DIR__ . '/../..' . '/src/MyPortfolio/Projects/ProjectsPostType.php',
     );
 

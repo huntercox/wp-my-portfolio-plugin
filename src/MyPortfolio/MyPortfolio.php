@@ -6,6 +6,8 @@ use MyPortfolio\AdminPages\MenuPage;
 use MyPortfolio\AdminPages\ApiSettingsPage;
 use MyPortfolio\Projects\ProjectsPostType;
 use MyPortfolio\Projects\ProjectsDisplay;
+use MyPortfolio\Projects\ProjectsMetaFields;
+
 
 class MyPortfolio
 {
@@ -14,7 +16,8 @@ class MyPortfolio
 		new MenuPage();
 		new ApiSettingsPage();
 		new ProjectsPostType();
-		new ProjectsDisplay();
+		$projectsMetaFields = new ProjectsMetaFields();
+		new ProjectsDisplay($projectsMetaFields);
 
 		add_action('wp_enqueue_scripts', [$this, 'enqueue_styles']);
 		add_action('admin_enqueue_scripts', [$this, 'enqueue_admin_scripts']);

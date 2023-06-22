@@ -2,7 +2,7 @@
 
 namespace MyPortfolio\AdminPages;
 
-class APISettingsPage
+class ApiSettingsPage
 {
 	public function __construct()
 	{

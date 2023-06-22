@@ -93,7 +93,6 @@ class ProjectsPostType
 			$data[] = [
 				'id' => $post->ID,
 				'title' => $post->post_title,
-				'content' => $post->post_content,
 				'meta_fields' => [
 					'color' => $color_value,
 					'text' => $text_value,
