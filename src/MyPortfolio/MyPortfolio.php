@@ -4,6 +4,7 @@ namespace MyPortfolio;
 
 use MyPortfolio\AdminPages\MenuPage;
 use MyPortfolio\AdminPages\ApiSettingsPage;
+use MyPortfolio\Projects\ProjectsAPIHandler;
 use MyPortfolio\Projects\ProjectsPostType;
 use MyPortfolio\Projects\ProjectsDisplay;
 use MyPortfolio\Projects\ProjectsMetaFields;
@@ -16,6 +17,7 @@ class MyPortfolio
 		new MenuPage();
 		new ApiSettingsPage();
 		new ProjectsPostType();
+		new ProjectsAPIHandler();
 		$projectsMetaFields = new ProjectsMetaFields();
 		new ProjectsDisplay($projectsMetaFields);
 
