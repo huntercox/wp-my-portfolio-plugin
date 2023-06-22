@@ -7,10 +7,9 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'MyPortfolio\\AdminPages\\ApiSettingsPage' => $baseDir . '/src/MyPortfolio/AdminPages/ApiSettingsPage.php',
     'MyPortfolio\\AdminPages\\MenuPage' => $baseDir . '/src/MyPortfolio/AdminPages/MenuPage.php',
-    'MyPortfolio\\AdminPages\\PortfolioPostType' => $baseDir . '/src/MyPortfolio/AdminPages/PortfolioPostType.php',
-    'MyPortfolio\\AdminPages\\SettingsPage1' => $baseDir . '/src/MyPortfolio/AdminPages/SettingsPage1.php',
-    'MyPortfolio\\AdminPages\\SettingsPage2' => $baseDir . '/src/MyPortfolio/AdminPages/SettingsPage2.php',
-    'MyPortfolio\\AdminPages\\SettingsPage3' => $baseDir . '/src/MyPortfolio/AdminPages/SettingsPage3.php',
     'MyPortfolio\\MyPortfolio' => $baseDir . '/src/MyPortfolio/MyPortfolio.php',
+    'MyPortfolio\\Projects\\ProjectsDisplay' => $baseDir . '/src/MyPortfolio/Projects/ProjectsDisplay.php',
+    'MyPortfolio\\Projects\\ProjectsPostType' => $baseDir . '/src/MyPortfolio/Projects/ProjectsPostType.php',
 );

@@ -5,7 +5,7 @@
  *
  * @wordpress-plugin
  * Plugin Name: HSC My Portfolio
- * Description: Exposes an API with my portfolio data such as resume info, projects and skills for usage within WP Admin or theme code.
+ * Description: Add portfolio data as projects with c
  * Version: 1.0.0
  * Author: Hunter Cox
  * Author URI: www.huntercox.dev

@@ -1,0 +1,18 @@
+input {
+	background-color: #ececec;
+}
+
+/* Color select field */
+.project-meta-field__color-select {
+	margin-bottom: 15px;
+}
+
+.project-meta-field__color-select label {
+	display: block;
+	margin-bottom: 5px;
+}
+
+/* Text field */
+.project-meta-field__text-input {}
+
+.project-meta-field field--color-select .project-meta-field field--text-input .project-meta-field field--textarea .project-meta-field field--checkboxes .project-meta-field field--radio-btns
