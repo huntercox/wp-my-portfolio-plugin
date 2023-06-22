@@ -84,13 +84,28 @@ class ProjectsPostType
 
 		$data = [];
 		foreach ($posts as $post) {
+			$color_value = get_post_meta($post->ID, '_project_color_meta_key', true);
+			$text_value = get_post_meta($post->ID, '_project_text_meta_key', true);
+			$textarea_value = get_post_meta($post->ID, '_project_textarea_meta_key', true);
+			$checkbox_value = get_post_meta($post->ID, '_project_checkbox_meta_key', true);
+			$radio_value = get_post_meta($post->ID, '_project_radio_meta_key', true);
+
 			$data[] = [
 				'id' => $post->ID,
 				'title' => $post->post_title,
 				'content' => $post->post_content,
+				'meta_fields' => [
+					'color' => $color_value,
+					'text' => $text_value,
+					'textarea' => $textarea_value,
+					'checkbox' => $checkbox_value,
+					'radio' => $radio_value,
+				]
 			];
 		}
+?>
 
+<?php
 		return new WP_REST_Response($data, 200);
 	}
 }
