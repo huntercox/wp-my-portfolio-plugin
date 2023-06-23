@@ -19,7 +19,8 @@ class ProjectsAPIHandler
 
 			// Check for errors
 			if (is_wp_error($response)) {
-				return '<p>Error fetching projects.</p>';
+				// return '<p>Error fetching projects.</p>';
+				return '<p>' . $response->get_error_message() . '</p>';
 			}
 
 			// Parse the API response
@@ -33,7 +34,28 @@ class ProjectsAPIHandler
 			// Generate the HTML for the project list
 			$projectListHtml = '<ul>';
 			foreach ($projects as $project) {
-				$projectListHtml .= '<li>' . esc_html($project['title']) . '</li>'; // replace 'name' with the actual name field key
+				$project_id = $project['id'];
+				$project_title = $project['title'];
+				$project_description = $project['description'];
+				$project_employer = $project['employer'];
+
+
+				$projectListHtml .= '<li><h3>Project</h3>';
+
+				if (!empty($project_id)) {
+					$projectListHtml .= '<span><strong>ID: </strong>' . esc_html($project_id) . '</span>';
+				}
+				if (!empty($project_title)) {
+					$projectListHtml .= '<span><strong>Title: </strong>' . esc_html($project_title) . '</span>';
+				}
+				if (!empty($project_description)) {
+					$projectListHtml .= '<p><strong>Description: </strong>' . esc_html($project_description) . '</p>';
+				}
+				if (!empty($project_employer)) {
+					$projectListHtml .= '<span><strong>Employer: </strong>' . esc_html($project_employer) . '</span>';
+				}
+
+				$projectListHtml .= '</li>';
 			}
 			$projectListHtml .= '</ul>';
 

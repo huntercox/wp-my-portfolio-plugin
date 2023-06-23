@@ -54,12 +54,11 @@ class ProjectsDisplay
 
 		$textarea_value = get_post_meta($post->ID, '_project_textarea_meta_key', true);
 
+		// Output project description field
+		$this->projectsMetaFields->project_description_textarea_field($post);
 
-		// Output color field
-		$this->projectsMetaFields->color_select_field($post);
-
-		// Output text field
-		$this->projectsMetaFields->text_input_field($post);
+		// Output employer field
+		$this->projectsMetaFields->employer_select_field($post);
 	}
 
 	public function save_custom_meta_data($post_id)
@@ -86,14 +85,14 @@ class ProjectsDisplay
 		}
 
 		// Sanitize and save form field data
-		if (isset($_POST['project_color_field'])) {
-			$color_data = sanitize_text_field($_POST['project_color_field']);
-			update_post_meta($post_id, '_project_color_meta_key', $color_data);
+		if (isset($_POST['project_description_textarea_field'])) {
+			$textarea_data = sanitize_text_field($_POST['project_description_textarea_field']);
+			update_post_meta($post_id, '_project_description_meta_key', $textarea_data);
 		}
 
-		if (isset($_POST['project_text_field'])) {
-			$text_data = sanitize_text_field($_POST['project_text_field']);
-			update_post_meta($post_id, '_project_text_meta_key', $text_data);
+		if (isset($_POST['project_employer_field'])) {
+			$text_data = sanitize_text_field($_POST['project_employer_field']);
+			update_post_meta($post_id, '_project_employer_meta_key', $text_data);
 		}
 	}
 }

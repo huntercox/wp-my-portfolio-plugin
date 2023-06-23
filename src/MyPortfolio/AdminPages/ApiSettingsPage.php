@@ -62,6 +62,17 @@ class ApiSettingsPage
 			Expose API
 			<input type="checkbox" name="expose_api" value="on" <?php checked($setting, 'on'); ?> />
 		</label>
+		<?php
+		if ($setting === 'on') {
+			$url = get_site_url() . '/wp-json/myportfolio/v1/projects';
+		?>
+			<a href="<?php echo esc_url($url); ?>" target="_blank">View Endpoint</a>
+		<?php
+		} else {
+			// no link
+		}
+		?>
+
 <?php
 	}
 

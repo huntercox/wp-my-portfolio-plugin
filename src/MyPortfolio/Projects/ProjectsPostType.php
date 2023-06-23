@@ -6,15 +6,18 @@ use WP_REST_Response;
 
 class ProjectsPostType
 {
+
 	public function __construct()
 	{
-		add_action('init', [$this, 'register_project_post_type']);
 
-		// Add CSS to Admin pages
-		add_action('admin_enqueue_scripts', [$this, 'enqueue_admin_scripts']);
 
 		// REST API
 		add_action('rest_api_init', [$this, 'register_api_endpoints']);
+
+		// Register the Project post type
+		add_action('init', [$this, 'register_project_post_type']);
+		// Add CSS to Admin pages
+		add_action('admin_enqueue_scripts', [$this, 'enqueue_admin_scripts']);
 	}
 
 	public function register_project_post_type()
@@ -70,12 +73,13 @@ class ProjectsPostType
 
 		register_rest_route('myportfolio/v1', '/projects', [
 			'methods' => 'GET',
-			'callback' => [$this, 'get_projects'],
+			'callback' => [$this, 'get_projects']
 		]);
 	}
 
 	public function get_projects()
 	{
+
 		$args = [
 			'post_type' => 'project',
 			'posts_per_page' => -1,
@@ -84,27 +88,16 @@ class ProjectsPostType
 
 		$data = [];
 		foreach ($posts as $post) {
-			$color_value = get_post_meta($post->ID, '_project_color_meta_key', true);
-			$text_value = get_post_meta($post->ID, '_project_text_meta_key', true);
-			$textarea_value = get_post_meta($post->ID, '_project_textarea_meta_key', true);
-			$checkbox_value = get_post_meta($post->ID, '_project_checkbox_meta_key', true);
-			$radio_value = get_post_meta($post->ID, '_project_radio_meta_key', true);
+			$description_value = get_post_meta($post->ID, '_project_description_meta_key', true);
+			$employer_value = get_post_meta($post->ID, '_project_employer_meta_key', true);
 
 			$data[] = [
 				'id' => $post->ID,
 				'title' => $post->post_title,
-				'meta_fields' => [
-					'color' => $color_value,
-					'text' => $text_value,
-					'textarea' => $textarea_value,
-					'checkbox' => $checkbox_value,
-					'radio' => $radio_value,
-				]
+				'description' => $description_value,
+				'employer' => $employer_value,
 			];
 		}
-?>
-
-<?php
 		return new WP_REST_Response($data, 200);
 	}
 }
