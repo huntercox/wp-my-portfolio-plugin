@@ -49,7 +49,7 @@ class ProjectsDisplay
 
 		$this->projectsMetaFields->project_url_text_field($post);
 
-		$this->projectsMetaFields->repeatable_text_fields($post);
+		$this->projectsMetaFields->contributions_repeater($post);
 	}
 
 	public function save_custom_meta_data($post_id)
@@ -96,10 +96,10 @@ class ProjectsDisplay
 			update_post_meta($post_id, '_project_link_status_meta_key', $text_data);
 		}
 
-		// Repeatable fields
-		if (isset($_POST['repeatable_text_field'])) {
-			$repeatable_text_field = $_POST['repeatable_text_field'];
-			update_post_meta($post_id, '_repeatable_text_field_meta_key', $repeatable_text_field);
+		// Contribution fields
+		if (isset($_POST['contributions_repeater'])) {
+			$contributions = $_POST['contributions_repeater'];
+			update_post_meta($post_id, '_contributions_repeater_meta_key', $contributions);
 		}
 	}
 }

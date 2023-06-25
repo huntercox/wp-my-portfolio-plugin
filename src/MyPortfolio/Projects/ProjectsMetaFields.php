@@ -11,7 +11,7 @@ class ProjectsMetaFields
 	}
 	public function enqueue_admin_scripts()
 	{
-		wp_enqueue_script('repeatable-fields',  MY_PORTFOLIO_PLUGIN_DIR_URL . 'assets/js/repeatable-fields.js', array('jquery'), '1.0.0', true);
+		wp_enqueue_script('contributions-repeater',  MY_PORTFOLIO_PLUGIN_DIR_URL . 'assets/js/contributions-repeater.js', array('jquery'), '1.0.0', true);
 	}
 	public function register_meta_fields()
 	{
@@ -52,7 +52,7 @@ class ProjectsMetaFields
 		]);
 
 		// Repeater fields
-		register_meta('post', '_repeatable_text_field_meta_key', [
+		register_meta('post', 'contributions_repeater', [
 			'show_in_rest' => [
 				'schema' => [
 					'type'  => 'array',
@@ -61,7 +61,6 @@ class ProjectsMetaFields
 					],
 				],
 			],
-
 			'single' => true,
 			'type' => 'array',
 			'auth_callback' => function () {
@@ -150,53 +149,56 @@ class ProjectsMetaFields
 	}
 
 
-	public function repeatable_text_fields($post)
+	public function contributions_repeater($post)
 	{
-		$repeatable_fields = get_post_meta($post->ID, '_repeatable_text_field_meta_key', true);
+		$contributions_fields = get_post_meta($post->ID, '_contributions_repeater_meta_key', true);
 
 
+		if ($contributions_fields) {
 
-		echo <<<HTML
-		<div class="repeatable-field-data">
-			<h4>Repeatable Field Data</h4>
-			<table>
-				<thead>
-					<tr>
-						<th>Values</th>
-					</tr>
-				</thead>
-				<tbody>
-		HTML;
+			echo <<<HTML
+			<div class="repeatable-field-data">
+				<h4>Project Contributions</h4>
+				<table>
+					<thead></thead>
+						<tr>
+							<th>Contribution</th>
+						</tr>
+					</thead>
+					<tbody>
+			HTML;
 
-		if ($repeatable_fields) {
-			foreach ($repeatable_fields as $field) {
-				$field_value = esc_attr($field);
-				echo <<<HTML
+			if ($contributions_fields) {
+				foreach ($contributions_fields as $field) {
+					$field_value = esc_attr($field);
+					echo <<<HTML
 					<tr>
 						<td>$field_value</td>
 					</tr>
 				HTML;
+				}
 			}
+			echo <<<HTML
+						</tr>
+					</tbody>
+				</table>
+				<hr>
+				<p>Use the button below to add more fields.</p>
+			</div>
+			HTML;
 		}
 		echo <<<HTML
-					</tr>
-				</tbody>
-			</table>
-			<hr>
-			<p>Use the button below to add more fields.</p>
-		</div>
-
 		<div id="repeatable-fieldset-one-wrapper">
 		<ul id="repeatable-fieldset-one">
 		HTML;
-		if ($repeatable_fields) {
+		if ($contributions_fields) {
 			$i = 0;
-			foreach ($repeatable_fields as $field) {
+			foreach ($contributions_fields as $field) {
 				$i++;
 				$field_value = esc_attr($field);
 				echo <<<HTML
-				<li class="added-$i">
-				<input type="text" name="repeatable_text_field[]" value="$field_value"/>
+				<li class="added-$i" style="display: flex;">
+				<textarea name="contributions_repeater[]" value="$field_value" style="width: 100%;" rows="3">$field_value</textarea>
 				<button class="remove-row button">Remove</button>
 				</li>
 				HTML;
@@ -204,19 +206,19 @@ class ProjectsMetaFields
 		} else {
 			echo <<<HTML
 			<li class="default">
-			<input type="text" name="repeatable_text_field[]"/>
+			<textarea name="contributions_repeater[]" value="" style="width: 100%;" rows="3"></textarea>
 			<button class="remove-row button">Remove</button>
 			</li>
 			HTML;
 		}
 		echo <<<HTML
 			<li style="display: none;" class="empty-row">
-				<input type="text" name="repeatable_text_field[]" value=""/>
+				<textarea name="contributions_repeater[]" value="" style="width: 100%;" rows="3"></textarea>
 				<button class="remove-row button">Remove</button>
 			</li>
 		</ul>
 		<p>Click the blue "Update" button to save your value, or click "Add another" to create another input for before saving.</p>
-		<button id="add-row" class="button">Add another</button>
+		<button id="add-row" class="button">Add Contribution</button>
 		</div>
 		HTML;
 	}
