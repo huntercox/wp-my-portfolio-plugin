@@ -12,8 +12,8 @@ class MenuPage
 	public function add_portfolio_menu_page()
 	{
 		add_menu_page(
-			'My Portfolio Menu Page',
-			'My Portfolio Menu Page',
+			'My Portfolio',
+			'My Portfolio',
 			'manage_options',
 			'my-portfolio-menu-page',
 			[$this, 'render_portfolio_menu_page']
