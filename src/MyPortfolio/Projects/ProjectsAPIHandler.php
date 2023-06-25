@@ -15,7 +15,7 @@ class ProjectsAPIHandler
 		// We only want to modify the content for the 'projects' page
 		if (is_page('projects')) {
 			// Fetch projects from the API
-			$response = wp_remote_get('http://plugin-testing.local/wp-json/myportfolio/v1/projects');
+			$response = wp_remote_get('https://huntercoxdev.com/wp-json/myportfolio/v1/projects');
 
 			// Check for errors
 			if (is_wp_error($response)) {

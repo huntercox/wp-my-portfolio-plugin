@@ -9,13 +9,15 @@ class ProjectsPostType
 
 	public function __construct()
 	{
-
-
 		// REST API
 		add_action('rest_api_init', [$this, 'register_api_endpoints']);
 
 		// Register the Project post type
 		add_action('init', [$this, 'register_project_post_type']);
+
+		// Add Projects Menu page
+		add_action('admin_menu', [$this, 'add_projects_menu_page']);
+
 		// Add CSS to Admin pages
 		add_action('admin_enqueue_scripts', [$this, 'enqueue_admin_scripts']);
 	}
@@ -45,7 +47,7 @@ class ProjectsPostType
 			'public'             => true,
 			'publicly_queryable' => true,
 			'show_ui'            => true,
-			'show_in_menu'       => 'my-portfolio-menu-page',  // This makes it a subpage of your main menu
+			'show_in_menu'       => 'my-portfolio-projects-page',
 			'query_var'          => true,
 			'rewrite'            => ['slug' => 'project'],
 			'capability_type'    => 'post',
@@ -58,6 +60,17 @@ class ProjectsPostType
 		register_post_type('project', $args);
 	}
 
+	public function add_projects_menu_page()
+	{
+		add_menu_page(
+			'My Projects',
+			'Projects',
+			'manage_options',
+			'my-portfolio-projects-page',
+			'', //callback
+			'dashicons-format-gallery'
+		);
+	}
 
 	public function enqueue_admin_scripts()
 	{
@@ -73,7 +86,7 @@ class ProjectsPostType
 
 		register_rest_route('myportfolio/v1', '/projects', [
 			'methods' => 'GET',
-			'callback' => [$this, 'get_projects']
+			'callback' => [$this, 'get_projects'],
 		]);
 	}
 

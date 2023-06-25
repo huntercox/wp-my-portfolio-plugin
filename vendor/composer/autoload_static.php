@@ -28,6 +28,7 @@ class ComposerStaticInite434ca7a69e77b4503043afd0be16b72
         'MyPortfolio\\Projects\\ProjectsAPIHandler' => __DIR__ . '/../..' . '/src/MyPortfolio/Projects/ProjectsAPIHandler.php',
         'MyPortfolio\\Projects\\ProjectsDisplay' => __DIR__ . '/../..' . '/src/MyPortfolio/Projects/ProjectsDisplay.php',
         'MyPortfolio\\Projects\\ProjectsMetaFields' => __DIR__ . '/../..' . '/src/MyPortfolio/Projects/ProjectsMetaFields.php',
+        'MyPortfolio\\Projects\\ProjectsOutput' => __DIR__ . '/../..' . '/src/MyPortfolio/Projects/ProjectsOutput.php',
         'MyPortfolio\\Projects\\ProjectsPostType' => __DIR__ . '/../..' . '/src/MyPortfolio/Projects/ProjectsPostType.php',
     );
 

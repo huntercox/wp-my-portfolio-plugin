@@ -16,7 +16,8 @@ class MenuPage
 			'My Portfolio',
 			'manage_options',
 			'my-portfolio-menu-page',
-			[$this, 'render_portfolio_menu_page']
+			[$this, 'render_portfolio_menu_page'],
+			'dashicons-portfolio'
 		);
 	}
 

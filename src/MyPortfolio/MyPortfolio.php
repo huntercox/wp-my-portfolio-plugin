@@ -8,7 +8,7 @@ use MyPortfolio\Projects\ProjectsAPIHandler;
 use MyPortfolio\Projects\ProjectsPostType;
 use MyPortfolio\Projects\ProjectsDisplay;
 use MyPortfolio\Projects\ProjectsMetaFields;
-
+// use MyPortfolio\Projects\ProjectsOutput;
 
 class MyPortfolio
 {
@@ -20,6 +20,7 @@ class MyPortfolio
 		new ProjectsAPIHandler();
 		$projectsMetaFields = new ProjectsMetaFields();
 		new ProjectsDisplay($projectsMetaFields);
+		// new ProjectsOutput($projectsMetaFields);
 
 		add_action('wp_enqueue_scripts', [$this, 'enqueue_styles']);
 		add_action('admin_enqueue_scripts', [$this, 'enqueue_admin_scripts']);

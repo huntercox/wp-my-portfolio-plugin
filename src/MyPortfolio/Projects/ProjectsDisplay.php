@@ -22,16 +22,6 @@ class ProjectsDisplay
 
 	public function add_custom_meta_boxes()
 	{
-		// This function generates a custom meta box.
-
-		// The 'add_meta_box' function adds a meta box to one or several screens.
-		// This function takes six parameters:
-		// 1) HTML 'id' attribute of the edit screen section
-		// 2) Title of the edit screen section
-		// 3) Callback function that prints out the HTML for the edit screen section
-		// 4) The type of Write screen on which to show the edit screen section
-		// 5) The part of the page where the edit screen section should be shown
-		// 6) The priority within the context where the boxes should show
 		add_meta_box(
 			'project_details', // HTML 'id' attribute of the edit screen section
 			'Project Details', // Title of the edit screen section
@@ -50,15 +40,16 @@ class ProjectsDisplay
 		// Nonces are used to verify that the requested action is coming from the correct screen.
 		wp_nonce_field('project_details_save_data', 'project_details_meta_box_nonce');
 
-		// Retrieve existing values from the database
-
-		$textarea_value = get_post_meta($post->ID, '_project_textarea_meta_key', true);
 
 		// Output project description field
 		$this->projectsMetaFields->project_description_textarea_field($post);
 
 		// Output employer field
 		$this->projectsMetaFields->employer_select_field($post);
+
+		$this->projectsMetaFields->project_url_text_field($post);
+
+		$this->projectsMetaFields->repeatable_text_fields($post);
 	}
 
 	public function save_custom_meta_data($post_id)
@@ -93,6 +84,22 @@ class ProjectsDisplay
 		if (isset($_POST['project_employer_field'])) {
 			$text_data = sanitize_text_field($_POST['project_employer_field']);
 			update_post_meta($post_id, '_project_employer_meta_key', $text_data);
+		}
+
+		if (isset($_POST['project_url_text_field'])) {
+			$url_data = sanitize_url($_POST['project_url_text_field']);
+			update_post_meta($post_id, '_project_url_meta_key', $url_data);
+		}
+
+		if (isset($_POST['project_link_status'])) {
+			$text_data = sanitize_text_field($_POST['project_link_status']);
+			update_post_meta($post_id, '_project_link_status_meta_key', $text_data);
+		}
+
+		// Repeatable fields
+		if (isset($_POST['repeatable_text_field'])) {
+			$repeatable_text_field = $_POST['repeatable_text_field'];
+			update_post_meta($post_id, '_repeatable_text_field_meta_key', $repeatable_text_field);
 		}
 	}
 }

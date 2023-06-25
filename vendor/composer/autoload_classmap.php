@@ -13,5 +13,6 @@ return array(
     'MyPortfolio\\Projects\\ProjectsAPIHandler' => $baseDir . '/src/MyPortfolio/Projects/ProjectsAPIHandler.php',
     'MyPortfolio\\Projects\\ProjectsDisplay' => $baseDir . '/src/MyPortfolio/Projects/ProjectsDisplay.php',
     'MyPortfolio\\Projects\\ProjectsMetaFields' => $baseDir . '/src/MyPortfolio/Projects/ProjectsMetaFields.php',
+    'MyPortfolio\\Projects\\ProjectsOutput' => $baseDir . '/src/MyPortfolio/Projects/ProjectsOutput.php',
     'MyPortfolio\\Projects\\ProjectsPostType' => $baseDir . '/src/MyPortfolio/Projects/ProjectsPostType.php',
 );

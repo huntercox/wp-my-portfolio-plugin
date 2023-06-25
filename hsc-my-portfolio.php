@@ -20,3 +20,6 @@ define('MY_PORTFOLIO_PLUGIN_DIR_URL', plugin_dir_url(__FILE__));
 define('MY_PORTFOLIO_PLUGIN_DIR_PATH', untrailingslashit(plugin_dir_path(__FILE__)));
 
 new MyPortfolio\MyPortfolio();
+
+//
+require_once __DIR__ . '/inc/functions.php';
