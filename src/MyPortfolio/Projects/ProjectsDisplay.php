@@ -50,6 +50,8 @@ class ProjectsDisplay
 		$this->projectsMetaFields->project_url_text_field($post);
 
 		$this->projectsMetaFields->contributions_repeater($post);
+
+		$this->projectsMetaFields->project_date_field($post);
 	}
 
 	public function save_custom_meta_data($post_id)
@@ -65,7 +67,7 @@ class ProjectsDisplay
 		}
 
 		// Check the user's permissions.
-		if (isset($_POST['post_type']) && 'page' == $_POST['post_type']) {
+		if (isset($_POST['post_type']) && 'page' === $_POST['post_type']) {
 			if (!current_user_can('edit_page', $post_id)) {
 				return;
 			}
@@ -96,10 +98,24 @@ class ProjectsDisplay
 			update_post_meta($post_id, '_project_link_status_meta_key', $text_data);
 		}
 
+		// Project Date
+		if (isset($_POST['project_date'])) {
+			$date_data = sanitize_text_field($_POST['project_date']);
+			update_post_meta($post_id, '_project_date_meta_key', $date_data);
+		}
+
+
 		// Contribution fields
 		if (isset($_POST['contributions_repeater'])) {
+			$sanitized_contributions = [];
 			$contributions = $_POST['contributions_repeater'];
-			update_post_meta($post_id, '_contributions_repeater_meta_key', $contributions);
+			foreach ($contributions as $i => $contribution) {
+				// $sanitized_value = sanitize_text_field($contributions[$i]);
+				// $sanitized_value = strip_tags($contribution);
+				$sanitized_value = sanitize_text_field($contribution);
+				$sanitized_contributions[$i] = $sanitized_value;
+			}
+			update_post_meta($post_id, '_contributions_repeater_meta_key', $sanitized_contributions);
 		}
 	}
 }

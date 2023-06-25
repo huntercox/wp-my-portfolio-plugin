@@ -24,6 +24,7 @@ class ProjectsMetaFields
 			}
 		]);
 
+		// Project Employer
 		register_meta('post', 'project_employer_field', [
 			'show_in_rest' => true,
 			'single' => true,
@@ -34,6 +35,7 @@ class ProjectsMetaFields
 		]);
 
 
+		// Project URL
 		register_meta('post', 'project_url_text_field', [
 			'show_in_rest' => true,
 			'single' => true,
@@ -42,6 +44,7 @@ class ProjectsMetaFields
 				return current_user_can('edit_posts');
 			}
 		]);
+		// Project Link Status
 		register_meta('post', 'project_link_status', [
 			'show_in_rest' => true,
 			'single' => true,
@@ -63,6 +66,19 @@ class ProjectsMetaFields
 			],
 			'single' => true,
 			'type' => 'array',
+			'auth_callback' => function () {
+				return current_user_can('edit_posts');
+			},
+			'sanitize_callback' => function ($meta_value, $meta_key, $object_type) {
+				return array_map('sanitize_text_field', $meta_value);
+			}
+		]);
+
+		// Project Date
+		register_meta('post', 'project_date_field', [
+			'show_in_rest' => true,
+			'single' => true,
+			'type' => 'string',
 			'auth_callback' => function () {
 				return current_user_can('edit_posts');
 			}
@@ -170,7 +186,7 @@ class ProjectsMetaFields
 
 			if ($contributions_fields) {
 				foreach ($contributions_fields as $field) {
-					$field_value = esc_attr($field);
+					$field_value = esc_html($field);
 					echo <<<HTML
 					<tr>
 						<td>$field_value</td>
@@ -198,16 +214,16 @@ class ProjectsMetaFields
 				$field_value = esc_attr($field);
 				echo <<<HTML
 				<li class="added-$i" style="display: flex;">
-				<textarea name="contributions_repeater[]" value="$field_value" style="width: 100%;" rows="3">$field_value</textarea>
-				<button class="remove-row button">Remove</button>
+					<textarea name="contributions_repeater[]" value="$field_value" style="width: 100%;" rows="3">$field_value</textarea>
+					<button class="remove-row button">Remove</button>
 				</li>
 				HTML;
 			}
 		} else {
 			echo <<<HTML
 			<li class="default">
-			<textarea name="contributions_repeater[]" value="" style="width: 100%;" rows="3"></textarea>
-			<button class="remove-row button">Remove</button>
+				<textarea name="contributions_repeater[]" value="" style="width: 100%;" rows="3"></textarea>
+				<button class="remove-row button">Remove</button>
 			</li>
 			HTML;
 		}
@@ -219,6 +235,22 @@ class ProjectsMetaFields
 		</ul>
 		<p>Click the blue "Update" button to save your value, or click "Add another" to create another input for before saving.</p>
 		<button id="add-row" class="button">Add Contribution</button>
+		</div>
+		HTML;
+	}
+
+	public function project_date_field($post)
+	{
+		// Project Date: text field
+		$date_value = get_post_meta($post->ID, '_project_date_meta_key', true);
+		$date_value = esc_attr($date_value);
+
+		echo <<<HTML
+		<div class="project-meta-field field--text-input">
+			<label for="project_date_field">
+				Project Date: <br/>
+				<input type="text" id="project_date_field" name="project_date_field" value="$date_value" style="width: 100%;" />
+			</label>
 		</div>
 		HTML;
 	}
