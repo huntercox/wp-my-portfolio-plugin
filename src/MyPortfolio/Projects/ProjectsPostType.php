@@ -54,7 +54,10 @@ class ProjectsPostType
 			'has_archive'        => true,
 			'hierarchical'       => false,
 			'menu_position'      => null,
-			'supports'           => ['title']
+			'supports'           => ['title'],
+			'show_in_graphql' => true, // This makes the post type available in GraphQL
+			'graphql_single_name' => 'project', // name used to reference a single instance of the post type
+			'graphql_plural_name' => 'projects', // name used to reference multiple instances of the post type
 		];
 
 		register_post_type('project', $args);

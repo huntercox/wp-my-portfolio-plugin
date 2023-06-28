@@ -8,6 +8,8 @@ class ProjectsAPIHandler
 	{
 		// Add a filter that applies our custom function to 'the_content' for the 'projects' page
 		add_filter('the_content', [$this, 'render_project_list']);
+
+		add_action('graphql_register_types', [$this, 'register_api_endpoints']);
 	}
 
 	public function render_project_list($content)
@@ -65,5 +67,44 @@ class ProjectsAPIHandler
 
 		// For other pages, return the content unchanged
 		return $content;
+	}
+
+	public function register_api_endpoints($post)
+	{
+		// Description
+		register_graphql_field('Project', 'projectDescription', [
+			'type' => 'String',
+			'description' => __('The description of the project', 'hsc-my-portfolio'),
+			'resolve' => function ($post) {
+				return get_post_meta($post->ID, '_project_description_meta_key', true);
+			}
+		]);
+
+		// Date
+		register_graphql_field('Project', 'projectDate', [
+			'type' => 'String',
+			'description' => __('The date of the project', 'hsc-my-portfolio'),
+			'resolve' => function ($post) {
+				return get_post_meta($post->ID, '_project_date_meta_key', true);
+			}
+		]);
+
+		// Employer
+		register_graphql_field('Project', 'projectEmployer', [
+			'type' => 'String',
+			'description' => __('The employer of the project', 'hsc-my-portfolio'),
+			'resolve' => function ($post) {
+				return get_post_meta($post->ID, '_project_employer_meta_key', true);
+			}
+		]);
+
+		// URL
+		register_graphql_field('Project', 'projectUrl', [
+			'type' => 'String',
+			'description' => __('The URL of the project', 'hsc-my-portfolio'),
+			'resolve' => function ($post) {
+				return get_post_meta($post->ID, '_project_url_meta_key', true);
+			}
+		]);
 	}
 }

@@ -15,7 +15,7 @@ class ProjectsMetaFields
 	}
 	public function register_meta_fields()
 	{
-		register_meta('post', 'project_description_textarea_field', [
+		register_meta('project', 'project_description_textarea_field', [
 			'show_in_rest' => true,
 			'single' => true,
 			'type' => 'string',
@@ -25,7 +25,7 @@ class ProjectsMetaFields
 		]);
 
 		// Project Employer
-		register_meta('post', 'project_employer_field', [
+		register_meta('project', 'project_employer_field', [
 			'show_in_rest' => true,
 			'single' => true,
 			'type' => 'string',
@@ -36,7 +36,7 @@ class ProjectsMetaFields
 
 
 		// Project URL
-		register_meta('post', 'project_url_text_field', [
+		register_meta('project', 'project_url_text_field', [
 			'show_in_rest' => true,
 			'single' => true,
 			'type' => 'string',
@@ -45,7 +45,7 @@ class ProjectsMetaFields
 			}
 		]);
 		// Project Link Status
-		register_meta('post', 'project_link_status', [
+		register_meta('project', 'project_link_status', [
 			'show_in_rest' => true,
 			'single' => true,
 			'type' => 'string',
@@ -55,7 +55,7 @@ class ProjectsMetaFields
 		]);
 
 		// Repeater fields
-		register_meta('post', 'contributions_repeater', [
+		register_meta('project', 'contributions_repeater', [
 			'show_in_rest' => [
 				'schema' => [
 					'type'  => 'array',
@@ -75,7 +75,7 @@ class ProjectsMetaFields
 		]);
 
 		// Project Date
-		register_meta('post', 'project_date_field', [
+		register_meta('project', 'project_date_field', [
 			'show_in_rest' => true,
 			'single' => true,
 			'type' => 'string',
